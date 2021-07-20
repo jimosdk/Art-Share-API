@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     def create
         # render json:params
-        user = User.new(allowed_params)
+        user = User.new(user_params)
         if user.save
             render json: user#,notice: "User's #{user.name} info has been saved"
         else  
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
             return
         end
         user = User.find(params[:id])
-        if user.update(allowed_params)
+        if user.update(user_params)
             render json: user
         else
             render json: user.errors.full_messages,status: :unprocessable_entity
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
     protected
 
-    def allowed_params
-        params.require(:user).permit(:name,:email)
+    def user_params
+        params.require(:user).permit(:username)
     end
 end
