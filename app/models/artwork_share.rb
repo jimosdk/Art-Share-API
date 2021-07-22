@@ -3,6 +3,7 @@
 # Table name: artwork_shares
 #
 #  id         :bigint           not null, primary key
+#  favorite   :boolean          default(FALSE), not null
 #  artwork_id :integer          not null
 #  viewer_id  :integer          not null
 #
@@ -12,6 +13,7 @@
 #  index_artwork_shares_on_viewer_id                 (viewer_id)
 #
 class ArtworkShare < ApplicationRecord
+    validates :favorite,presence: true
     validates :artwork_id,uniqueness: {scope: :viewer_id}
     validate :not_own_artwork_share
     
@@ -19,6 +21,7 @@ class ArtworkShare < ApplicationRecord
         class_name: :User
 
     belongs_to :artwork
+
 
     def not_own_artwork_share
         errors.add(:viewer_id,"is the owner of the artwork") if own_artwork?

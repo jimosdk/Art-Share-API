@@ -50,5 +50,13 @@ class User < ApplicationRecord
         ->(artwork){where('artworks.favorite':true)},
         foreign_key: :artist_id,
         class_name: :Artwork  
-        
+
+    has_many :favorite_shares,
+        ->(share){where('artwork_shares.favorite':true)},
+        foreign_key: :viewer_id,
+        class_name: :ArtworkShare
+
+    has_many :favorite_shared_artworks,
+        through: :favorite_shares,
+        source: :artwork
 end
