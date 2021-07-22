@@ -12,10 +12,15 @@ Rails.application.routes.draw do
   resources :users ,only: [:index,:create,:destroy,:update,:show] do
     resources :artworks,only: [:index]
   end
-  
+  get 'users/:user_id/liked_comments', to: 'comments#liked_comments', as: 'liked_comments'
+  get 'users/:user_id/liked_artworks', to: 'artworks#liked_artworks', as: 'liked_artworks'
+
+
   resources :artworks,only: [:create,:show,:update,:destroy]
 
   resources :artwork_shares,only: [:create,:destroy]
 
   resources :comments,only: [:index,:create,:destroy]
+
+  resources :likes, only:[:create,:destroy]
 end

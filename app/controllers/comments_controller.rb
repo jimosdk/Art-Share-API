@@ -9,6 +9,11 @@ class CommentsController < ApplicationController
         end
     end
 
+    def liked_comments
+        liker = User.find(params[:user_id])
+        render json: liker.liked_comments
+    end
+
     def create 
         comment = Comment.new(comment_params)
         if comment.save
