@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 
   resources :artworks,only: [:create,:show,:update,:destroy]
+  get 'artworks/:artwork_id/artwork_likers', to: 'users#artwork_likers', as: 'artwork_likers'
 
   resources :artwork_shares,only: [:create,:destroy]
 
