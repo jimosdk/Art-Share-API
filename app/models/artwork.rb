@@ -13,7 +13,7 @@
 #  index_artworks_on_artist_id_and_title  (artist_id,title) UNIQUE
 #
 class Artwork < ApplicationRecord
-    validates :title,:image_url,:favorite,presence: true
+    validates :title,:image_url,presence: true
     validates :artist_id,uniqueness: { scope: :title}
 
     belongs_to :artist,

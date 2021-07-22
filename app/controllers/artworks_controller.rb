@@ -12,6 +12,14 @@ class ArtworksController < ApplicationController
         render json: liker.liked_artworks
     end
 
+    def favorite_artworks
+        user = User.find(params[:user_id])
+        favorite_artworks = []
+        favorite_artworks += user.favorite_own_artworks
+        favorite_artworks += user.favorite_shared_artworks
+        render json: favorite_artworks
+    end
+
     def show 
         render json: Artwork.find(params[:id])
     end

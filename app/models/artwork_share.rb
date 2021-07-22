@@ -13,7 +13,6 @@
 #  index_artwork_shares_on_viewer_id                 (viewer_id)
 #
 class ArtworkShare < ApplicationRecord
-    validates :favorite,presence: true
     validates :artwork_id,uniqueness: {scope: :viewer_id}
     validate :not_own_artwork_share
     
