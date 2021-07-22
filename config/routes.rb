@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :artwork_shares,only: [:create,:destroy]
 
   resources :comments,only: [:index,:create,:destroy]
+  get 'comments/:comment_id/comment_likers', to: 'users#comment_likers', as: 'comment_likers'
 
   resources :likes, only:[:create,:destroy]
 end
