@@ -13,6 +13,11 @@ class UsersController < ApplicationController
         render json: artwork.likers
     end
 
+    def comment_likers
+        comment = Comment.find(params[:comment_id])
+        render json: comment.likers
+    end
+
     def create
         # render json:params
         user = User.new(user_params)
