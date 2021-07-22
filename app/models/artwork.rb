@@ -3,6 +3,7 @@
 # Table name: artworks
 #
 #  id        :bigint           not null, primary key
+#  favorite  :boolean          default(FALSE), not null
 #  image_url :string           not null
 #  title     :string           not null
 #  artist_id :integer          not null
