@@ -8,6 +8,11 @@ class UsersController < ApplicationController
         end
     end
 
+    def artwork_likers
+        artwork = Artwork.find(params[:artwork_id])
+        render json: artwork.likers
+    end
+
     def create
         # render json:params
         user = User.new(user_params)
