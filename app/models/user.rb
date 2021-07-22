@@ -45,4 +45,10 @@ class User < ApplicationRecord
         through: :likes,
         source: :likeable,
         source_type: :Comment
+
+    has_many :favorite_own_artworks,
+        ->(artwork){where('artworks.favorite':true)},
+        foreign_key: :artist_id,
+        class_name: :Artwork  
+        
 end
