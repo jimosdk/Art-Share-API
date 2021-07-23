@@ -13,12 +13,15 @@ Rails.application.routes.draw do
     resources :artworks,only: [:index] do 
       get 'favorite_artworks' ,on: :collection
     end
+    resources :collections,only: [:index]
   end
   get 'users/:user_id/liked_comments', to: 'comments#liked_comments', as: 'liked_comments'
   get 'users/:user_id/liked_artworks', to: 'artworks#liked_artworks', as: 'liked_artworks'
 
 
-  resources :artworks,only: [:create,:show,:update,:destroy]
+  resources :artworks,only: [:create,:show,:update,:destroy] do
+    resources :collections,only: [:index]
+  end
   get 'artworks/:artwork_id/artwork_likers', to: 'users#artwork_likers', as: 'artwork_likers'
 
   resources :artwork_shares,only: [:create,:destroy]
@@ -27,4 +30,6 @@ Rails.application.routes.draw do
   get 'comments/:comment_id/comment_likers', to: 'users#comment_likers', as: 'comment_likers'
 
   resources :likes, only:[:create,:destroy]
+
+  resources :collections,only: [:create,:destroy]
 end
