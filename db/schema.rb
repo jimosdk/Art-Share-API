@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_143125) do
+ActiveRecord::Schema.define(version: 2021_07_23_094704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 2021_07_22_143125) do
     t.integer "artist_id", null: false
     t.boolean "favorite", default: false, null: false
     t.index ["artist_id", "title"], name: "index_artworks_on_artist_id_and_title", unique: true
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.integer "owner_id", null: false
+    t.string "title", null: false
+    t.index ["owner_id"], name: "index_collections_on_owner_id"
   end
 
   create_table "comments", force: :cascade do |t|
