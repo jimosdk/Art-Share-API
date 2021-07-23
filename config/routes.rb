@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   resources :collections,only: [:create,:destroy] do
     resources :artworks,only: [:index]
   end
+
+  resources :saved_artworks, only: [:create,:destroy]
 end
