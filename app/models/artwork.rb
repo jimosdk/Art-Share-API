@@ -40,4 +40,12 @@ class Artwork < ApplicationRecord
     has_many :likers,
         through: :likes,
         source: :liker
+
+    has_many :save_instances,
+        class_name: :SavedArtwork,
+        dependent: :destroy
+    
+    has_many :collections,
+        through: :save_instances,
+        source: :collection
 end
